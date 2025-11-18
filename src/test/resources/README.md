@@ -1,5 +1,3 @@
-# com.ubisam.examples.rest.frontend
-com.ubisam.examples.rest.frontend
 
 
 

@@ -157,7 +157,7 @@ const $common = {
       let v = import.meta.env[envKey];
 
       // console.log("base.js", key, envKey, v);
-      v = v.replaceAll("localhost",  window.location.hostname);
+      // v = v.replaceAll("localhost",  window.location.hostname);
       // console.log(window.location);
       // protocol: "https:"
       // hostname: "192.168.75.107"

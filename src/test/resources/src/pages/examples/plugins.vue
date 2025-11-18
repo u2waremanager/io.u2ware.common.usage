@@ -3,7 +3,7 @@
   <vue3-confirm-dialog persistent></vue3-confirm-dialog>
     <v-app-bar app>
       <router-link to="/">
-        <UbisamAvatar></UbisamAvatar>
+        <U2wareAvatar></U2wareAvatar>
       </router-link>
 
       <v-toolbar-title> Plugins Test </v-toolbar-title>
@@ -16,7 +16,7 @@
      
     </v-app-bar>
 
-    <UbisamFooter></UbisamFooter>
+    <U2wareFooter></U2wareFooter>
 
     <v-navigation-drawer permanent v-model="drawer">
       <v-list nav>

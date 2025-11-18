@@ -1,6 +1,11 @@
 package io.u2ware.common.usage.api.bars;
 
-import static io.u2ware.common.docs.MockMvcRestDocs.*;
+import static io.u2ware.common.docs.MockMvcRestDocs.get;
+import static io.u2ware.common.docs.MockMvcRestDocs.is2xx;
+import static io.u2ware.common.docs.MockMvcRestDocs.is4xx;
+import static io.u2ware.common.docs.MockMvcRestDocs.post;
+import static io.u2ware.common.docs.MockMvcRestDocs.print;
+import static io.u2ware.common.docs.MockMvcRestDocs.result;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -11,9 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.test.web.servlet.MockMvc;
 
-import io.u2ware.common.usage.api.foos.FooDocs;
 import io.u2ware.common.usage.api.oauth2.Oauth2Docs;
-import io.u2ware.common.usage.domain.Bar;
 
 @SpringBootTest
 @AutoConfigureMockMvc

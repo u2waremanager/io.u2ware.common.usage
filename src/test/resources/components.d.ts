@@ -15,7 +15,7 @@ declare module 'vue' {
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    UbisamAvatar: typeof import('./src/components/UbisamAvatar.vue')['default']
-    UbisamFooter: typeof import('./src/components/UbisamFooter.vue')['default']
+    U2wareAvatar: typeof import('./src/components/U2wareAvatar.vue')['default']
+    U2wareFooter: typeof import('./src/components/U2wareFooter.vue')['default']
   }
 }

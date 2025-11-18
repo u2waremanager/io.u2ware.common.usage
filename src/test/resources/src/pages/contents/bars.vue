@@ -73,12 +73,13 @@
           <v-card-text>
             <v-form validate-on="eager" @update:model-value="api.validate">
               <v-text-field
+                v-if="! isNew"
                 v-model="editEntity.id"
                 :rules="[$rules.requried]"
                 label="id"
                 placeholder="id"
-                :disabled="!isNew"
-                hint="Enter your id to access this website"
+                disabled
+                hint="......."
                 variant="outlined"
               ></v-text-field>
 
@@ -87,7 +88,7 @@
                 :rules="[$rules.requried]"
                 label="Name"
                 placeholder="name"
-                hint="Enter your password to access this website"
+                hint="........"
                 variant="outlined"
               ></v-text-field>
 
@@ -95,7 +96,7 @@
                 v-model="editEntity.age"
                 label="Age"
                 placeholder="age"
-                hint="Enter your password to access this website"
+                hint="......."
                 variant="outlined"
               ></v-text-field>
             </v-form>

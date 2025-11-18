@@ -40,6 +40,7 @@
             variant="plain"
             color="primary"
             :text="item.id"
+            style="text-transform: none"
             @click="readAction(item)"
           ></v-btn>
         </template>
@@ -79,13 +80,13 @@
 
               
               <v-text-field
-                v-if="! isNew"
+                
                 v-model="editEntity.id"
                 :rules="[$rules.requried]"
                 label="id"
                 placeholder="id"
-                disabled
-                hint="Enter your id to access this website"
+                :disabled="! isNew"
+                hint="......."
                 variant="outlined"
               ></v-text-field>
 
@@ -94,7 +95,7 @@
                 :rules="[$rules.requried]"
                 label="Name"
                 placeholder="name"
-                hint="Enter your password to access this website"
+                hint="......."
                 variant="outlined"
               ></v-text-field>
 
@@ -102,7 +103,7 @@
                 v-model="editEntity.age"
                 label="Age"
                 placeholder="age"
-                hint="Enter your password to access this website"
+                hint="......."
                 variant="outlined"
               ></v-text-field>
             </v-form>

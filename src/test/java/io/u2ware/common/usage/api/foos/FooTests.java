@@ -1,5 +1,12 @@
 package io.u2ware.common.usage.api.foos;
 
+import static io.u2ware.common.docs.MockMvcRestDocs.get;
+import static io.u2ware.common.docs.MockMvcRestDocs.is2xx;
+import static io.u2ware.common.docs.MockMvcRestDocs.is4xx;
+import static io.u2ware.common.docs.MockMvcRestDocs.post;
+import static io.u2ware.common.docs.MockMvcRestDocs.print;
+import static io.u2ware.common.docs.MockMvcRestDocs.result;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.jupiter.api.Test;
@@ -10,10 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static io.u2ware.common.docs.MockMvcRestDocs.*;
-
 import io.u2ware.common.usage.api.oauth2.Oauth2Docs;
-import io.u2ware.common.usage.domain.Foo;
 
 
 @SpringBootTest

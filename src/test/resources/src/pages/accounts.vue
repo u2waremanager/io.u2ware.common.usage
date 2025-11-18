@@ -2,7 +2,7 @@
   <v-app id="inspire">
     <v-app-bar app>
       <router-link to="/">
-        <UbisamAvatar></UbisamAvatar>
+        <U2wareAvatar></U2wareAvatar>
       </router-link>
 
       <v-toolbar-title> {{ $t("accounts.bar.title") }}</v-toolbar-title>
@@ -14,7 +14,7 @@
       </v-btn>
     </v-app-bar>
 
-    <UbisamFooter></UbisamFooter>
+    <U2wareFooter></U2wareFooter>
 
     <v-main>
 

@@ -55,9 +55,9 @@ const $contents = {
   foos: {
     search(data, params) {
       return $contents.api.execute((uri) => ({
-        url: `${uri}/api/foos/search`,
+        url: `${uri}/api/foos`,
         headers: $contents.api.headers(),
-        method: "POST",
+        method: "GET",
         data: data,
         params: $common.api.pageable(params),
       }));

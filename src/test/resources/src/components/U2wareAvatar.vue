@@ -1,10 +1,10 @@
 <template>
-  <v-avatar size="156">
+  <v-avatar size="52">
     <v-img
       contain
-      max-height="20%"
-      max-width="100%"
-      src="@/assets/images/ubisam_logo.png"
+      max-height="50%"
+      max-width="50%"
+      src="@/assets/images/u2ware_logo.png"
     ></v-img>
   </v-avatar>
 </template>
