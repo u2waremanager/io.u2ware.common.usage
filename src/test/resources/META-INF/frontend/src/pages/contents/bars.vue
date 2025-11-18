@@ -94,6 +94,7 @@
 
               <v-text-field
                 v-model="editEntity.age"
+                :rules="[$rules.number]"
                 label="Age"
                 placeholder="age"
                 hint="......."
@@ -156,9 +157,9 @@ export default {
         ],
 
         headers: [
-          { title: "id", key: "id", align: "center" },
-          { title: "name", key: "name", align: "start" },
-          { title: "age", key: "age", align: "start" },
+          { title: "id", key: "id", align: "start" },
+          { title: "name", key: "name", align: "center" },
+          { title: "age", key: "age", align: "end" },
         ],
         sortBy: [{ key: "id", order: "desc" }],
         itemValue: "id",
@@ -167,9 +168,8 @@ export default {
         entitiesTotal: 0,
         entity: {},
         initEntity: {
-          id: undefined,
-          name: "",
-          age: 0,
+          name: undefined,
+          age: undefined,
         },
       },
 

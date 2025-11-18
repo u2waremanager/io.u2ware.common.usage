@@ -167,9 +167,9 @@ export default {
         ],
 
         headers: [
-          { title: "id", key: "id", align: "center" },
-          { title: "name", key: "name", align: "start" },
-          { title: "age", key: "age", align: "start" },
+          { title: "id", key: "id", align: "start" },
+          { title: "name", key: "name", align: "center" },
+          { title: "age", key: "age", align: "end" },
         ],
         sortBy: [{ key: "id", order: "desc" }],
         itemValue: "id",

@@ -19,7 +19,6 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.test.web.servlet.MockMvc;
 
 import backend.api.oauth2.Oauth2Docs;
-import backend.api.users.UserRepository;
 import backend.domain.User;
 import io.u2ware.common.data.jpa.repository.query.JpaSpecificationBuilder;
 

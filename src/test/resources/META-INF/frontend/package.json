@@ -4,8 +4,8 @@
   "type": "module",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vite --mode dev",
+    "build": "vite build --mode build --outDir ../../../../../src/main/resources/META-INF/resources/",
     "preview": "vite preview",
     "lint": "eslint . --fix"
   },

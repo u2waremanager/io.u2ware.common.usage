@@ -225,6 +225,5 @@ node_modules/
 ##########################
 #
 ##########################
-/src/test/resources/META-INF/docs/*
-/src/test/resources/META-INF/resources/*
+/src/main/resources/META-INF/resources/*
 
