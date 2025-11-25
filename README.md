@@ -75,9 +75,12 @@ cd io.u2ware.common.examples
 ## 3. Deploy
 
 ```bash
-docker build -t ghcr.io/u2waremanager/examples:0.0.1-SNAPSHOT .
+docker build \
+--platform linux/arm64,linux/amd64 \
+-t ghcr.io/u2waremanager/io.u2ware.examples.rest:0.0.1-SNAPSHOT \
+.
 ```
 
 ```bash
-docker push -t ghcr.io/u2waremanager/examples:0.0.1-SNAPSHOT
+docker push ghcr.io/u2waremanager/io.u2ware.examples.rest:0.0.1-SNAPSHOT
 ```

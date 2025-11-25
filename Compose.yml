@@ -1,0 +1,75 @@
+
+name: io.u2ware.examples.rest
+
+services:
+
+  mysql:
+    image: ghcr.io/u2waremanager/io.u2ware.common.environment:mysql-9.5.0
+    environment:
+      MYSQL_ROOT_PASSWORD : trust
+      MYSQL_DATABASE : quest
+      MYSQL_USER : quest
+      MYSQL_PASSWORD : quest
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 1s
+
+    ports:
+      - "3306:3306"
+
+    volumes:
+      - ./target/volumns/mysql:/var/lib/mysql
+
+
+  postgres:
+    image: ghcr.io/u2waremanager/io.u2ware.common.environment:postgres-16.4-alpine3.20
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./target/volumns/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST_AUTH_METHOD : trust
+      POSTGRES_DB: quest
+      POSTGRES_USER: quest
+      POSTGRES_PASSWORD: quest
+
+
+  rest:
+    # ----------------------------------------
+    # Development Environment 
+    # ----------------------------------------
+    # image: io.u2ware.examples.rest:0.0.1-SNAPSHOT
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+
+    # ----------------------------------------
+    # Runtime Environment 
+    # ----------------------------------------
+    image: ghcr.io/u2waremanager/io.u2ware.examples.rest:0.0.1-SNAPSHOT
+
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_JPA_HIBERNATE_DDL-AUTO: update
+
+      SPRING_JPA_DATABASE-PLATFORM : org.hibernate.dialect.PostgreSQLDialect
+      # SPRING_JPA_DATABASE-PLATFORM : org.hibernate.dialect.MySQLDialect
+
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/quest
+      # SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/quest
+      SPRING_DATASOURCE_USERNAME: quest
+      SPRING_DATASOURCE_PASSWORD: quest
+
+    depends_on:
+      postgres :
+        condition: service_started
+      mysql :
+        condition: service_healthy
+
+
+
+
+
+
