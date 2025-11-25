@@ -4,7 +4,7 @@ name: io.u2ware.examples.rest
 services:
 
   mysql:
-    image: ghcr.io/u2waremanager/io.u2ware.common.environment:mysql-9.5.0
+    image: ghcr.io/u2waremanager/io.u2ware.examples.env:mysql-9.5.0
     environment:
       MYSQL_ROOT_PASSWORD : trust
       MYSQL_DATABASE : quest
@@ -23,7 +23,7 @@ services:
 
 
   postgres:
-    image: ghcr.io/u2waremanager/io.u2ware.common.environment:postgres-16.4-alpine3.20
+    image: ghcr.io/u2waremanager/io.u2ware.examples.env:postgres-16.4-alpine3.20
     ports:
       - "5432:5432"
     volumes:
