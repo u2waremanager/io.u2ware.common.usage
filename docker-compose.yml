@@ -6,7 +6,9 @@ name: usage_docker_compose
 services:
 
   mysql:
-    image: mysql:latest
+    # image: mysql:latest
+    image: ghcr.io/u2waremanager/ubisam-mysql:9.5.0
+    # platform: linux/amd64
     container_name: usage_mysql
     environment:
       MYSQL_DATABASE : usage_database
@@ -27,6 +29,7 @@ services:
 
   postgres:
     image: postgres:16.4-alpine3.20
+    platform: linux/amd64
     container_name: usage_postgres
     environment:
       POSTGRES_HOST_AUTH_METHOD : trust
@@ -40,6 +43,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4:latest
+    platform: linux/amd64
     container_name: usage_pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: usage_pgadmin@gmail.com
@@ -50,11 +54,13 @@ services:
       - postgres
 
   app:
+    image: usage_app:latest
     container_name: usage_app
-
+    platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile
+      # name: usage_app
 
     ports:
       - "8080:8080"
