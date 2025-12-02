@@ -12,10 +12,15 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppFooter: typeof import('./src/components/AppFooter.vue')['default']
+    ArrayField: typeof import('./src/components/EntityField.vue')['default']
+    EntityField: typeof import('./src/components/EntityField.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    JsonField: typeof import('./src/components/JsonField.vue')['default']
+    JsonModleField: typeof import('./src/components/JsonField.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     U2wareAvatar: typeof import('./src/components/U2wareAvatar.vue')['default']
     U2wareFooter: typeof import('./src/components/U2wareFooter.vue')['default']
+    VJsonField: typeof import('./src/components/VJsonField.vue')['default']
   }
 }

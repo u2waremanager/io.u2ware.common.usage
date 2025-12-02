@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.hateoas.Link;
 import org.springframework.stereotype.Component;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 
 @Component
 public class LinkConversion {
@@ -27,9 +26,7 @@ public class LinkConversion {
             T entity = conversionService.convert(link.toUri(), entityType);
             callback.convertWith(entity);
         }catch(Exception e) {
-            e.printStackTrace();
-            // logger.info("convertWithEntity : "+ e.getMessage());
-            // throw new HttpRequestMethodNotSupportedException(e.getMessage());
+            callback.convertWith(null);
         }
     }
 
@@ -37,7 +34,8 @@ public class LinkConversion {
         Set<T> entities = new HashSet<>();
         for(Link r : links) {
             convertWithEntity(entityType, r, item->{
-                entities.add((T)item);
+                if(item != null)
+                    entities.add((T)item);
             });
         }
         if(entities.size() > 0) {

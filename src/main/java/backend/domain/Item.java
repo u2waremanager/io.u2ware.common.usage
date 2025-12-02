@@ -48,8 +48,6 @@ public class Item extends AuditedEntity{
 
     private String title;
 
-    private Integer size;
-
 
     ////////////////////////////////////////////
     // Attributes

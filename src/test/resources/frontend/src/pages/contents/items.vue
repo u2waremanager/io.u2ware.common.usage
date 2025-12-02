@@ -123,13 +123,62 @@
 
               <v-text-field
                 class="ma-2"
-                v-model="editForm.size"
-                :rules="[$rules.number]"
-                label="size"
-                placeholder="size"
+                v-model="editForm.cryptoValue"
+                :rules="[$rules.requried]"
+                label="cryptoValue"
+                placeholder="cryptoValue"
                 hint="......."
                 variant="outlined"
               ></v-text-field>
+
+              <json-field
+                class="ma-2"
+                v-model="editForm.jsonValue"
+              >
+              </json-field>
+
+              <v-select
+                class="ma-2"
+                v-model="editForm.arrayValue"
+                multiple
+                chips
+                label="arrayValue"
+                placeholder="cryptoValue"
+                variant="outlined"
+                :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
+              ></v-select>
+
+             <entity-field
+                class="ma-2"
+                v-model="editForm.foo"
+                density="default"
+                :rules="[$rules.requried]"
+                :items="fooItems"
+                :item-title="fooItemsTitle"
+                :loading="fooItemsLoading"
+                placeholder="Foo"
+                @querySelections="fooItemsQuery"
+                hint="......."
+              >
+              </entity-field>
+
+             <entity-field
+                class="ma-2"
+                v-model="editForm.bars"
+                density="default"
+                :rules="[$rules.requried]"
+                :items="barItems"
+                :item-title="barItemsTitle"
+                :loading="barItemsLoading"
+                placeholder="Bars"
+                @querySelections="barItemsQuery"
+                multiple
+                chips
+                hint="......."
+              >
+              </entity-field>
+
+
               <!-- 
               /////////////////////////////
               # Edit Form End
@@ -200,7 +249,7 @@ export default {
       headers: [
         { key: "id", title: "id", align: "start" },
         { key: "title", title: "title", align: "center" },
-        { key: "size", title: "size", align: "end" },
+        { key: "cryptoValue", title: "crypto", align: "end" },
         { key: "updated.timestamp", title: "updatedTimestamp", align: "end" },
       ],
       sortBy: [{ key: "updated.timestamp", order: "desc" }],
@@ -209,12 +258,22 @@ export default {
       initForm: {
         id: undefined,
         title: undefined,
-        size: undefined,
+        jsonValue: {}, 
+        arrayValue : [],
       }
       /////////////////////////////////
       // Config Start
       /////////////////////////////////
     },
+
+    fooItems : [],
+    fooItemsTitle : "id",
+    fooItemsLoading : false,
+
+    barItems : [],
+    barItemsTitle : "_links.self.href",
+    barItemsLoading : false
+
   }),
 
   watch: {
@@ -230,7 +289,43 @@ export default {
     subtitle: $contentsStore.computed.subtitle,
   },
 
+
   methods: {
+
+    fooItemsQuery(v){
+      console.log(x, "fooItemsQuery", 1, v);
+      this.fooItemsLoading = true;
+      
+      $contentsApi.foos.search({}, {})
+      .then(r=>{
+        console.log(x, "fooItemsQuery", 2, r);
+
+        this.fooItems = r.entities;
+        this.fooItemsLoading = false;
+      })
+      .catch(r=>{
+        
+      });      
+    },
+
+    barItemsQuery(v){
+      console.log(x, "barItemsQuery", 1, v);
+      this.barItemsLoading = true;
+      
+      $contentsApi.bars.search({}, {})
+      .then(r=>{
+        console.log(x, "barItemsQuery", 2, r);
+
+        this.barItems = r.entities;
+        this.barItemsLoading = false;
+      })
+      .catch(r=>{
+        
+      });      
+    },
+
+
+
     ////////////////////////////////////////
     //
     ////////////////////////////////////////
