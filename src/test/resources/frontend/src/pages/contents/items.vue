@@ -131,11 +131,6 @@
                 variant="outlined"
               ></v-text-field>
 
-              <json-field
-                class="ma-2"
-                v-model="editForm.jsonValue"
-              >
-              </json-field>
 
               <v-select
                 class="ma-2"
@@ -148,15 +143,24 @@
                 :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
               ></v-select>
 
+
+              <attributes-field
+                class="ma-2"
+                v-model="editForm.jsonValue"
+              >
+              </attributes-field>
+
+
              <entity-field
                 class="ma-2"
-                v-model="editForm.foo"
+                v-model="editForm.fooLink"
                 density="default"
                 :rules="[$rules.requried]"
                 :items="fooItems"
                 :item-title="fooItemsTitle"
                 :loading="fooItemsLoading"
                 placeholder="Foo"
+                variant="outlined"
                 @querySelections="fooItemsQuery"
                 hint="......."
               >
@@ -164,7 +168,7 @@
 
              <entity-field
                 class="ma-2"
-                v-model="editForm.bars"
+                v-model="editForm.barsLinks"
                 density="default"
                 :rules="[$rules.requried]"
                 :items="barItems"
@@ -174,6 +178,7 @@
                 @querySelections="barItemsQuery"
                 multiple
                 chips
+                variant="outlined"
                 hint="......."
               >
               </entity-field>
@@ -249,7 +254,11 @@ export default {
       headers: [
         { key: "id", title: "id", align: "start" },
         { key: "title", title: "title", align: "center" },
-        { key: "cryptoValue", title: "crypto", align: "end" },
+        { key: "cryptoValue", title: "cryptoValue", align: "end" },
+        { key: "jsonValue", title: "jsonValue", align: "end" },
+        { key: "arrayValue", title: "arrayValue", align: "end" },
+        { key: "foo", title: "foo", align: "end" },
+        { key: "bars", title: "bars", align: "end" },
         { key: "updated.timestamp", title: "updatedTimestamp", align: "end" },
       ],
       sortBy: [{ key: "updated.timestamp", order: "desc" }],

@@ -1,7 +1,7 @@
 <template>
   <v-form :class="class" validate-on="eager" @update:model-value="formValidate">
     <v-data-table
-      class="my-5 highlight-row"
+      class="py-4 highlight-row"
       :headers="headers"
       :sort-by="sortBy"
       :items="items"
@@ -183,6 +183,6 @@ export default {
 
 <style scoped>
 .highlight-row {
-  border: 1px solid green;
+  border: 1px solid gray;
 }
 </style>
