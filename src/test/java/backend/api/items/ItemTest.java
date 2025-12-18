@@ -41,13 +41,13 @@ public class ItemTest {
 	protected @Autowired FooDocs fd;
 	protected @Autowired BarDocs bd;
 
-	protected @Autowired ItemDocs d;
+	protected @Autowired ItemDocs id;
 
  
     @Test
     public void contextLoads() throws Exception{
 
-        Jwt u = od.jose("itemTestUser1");
+        Jwt u = od.jose("itemUser1");
 
         //////////////////////////////
         // Ready
@@ -127,11 +127,11 @@ public class ItemTest {
         req.put("cryptoValue", "helloworld");
 
         mvc.perform(post("/api/items").auth(u).content(req))
-            .andDo(result(d::context, "item1"))
+            .andDo(result(id::context, "item1"))
             .andDo(print())
             .andExpect(is2xx());
-        String link1 = d.context("item1", "$._links.self.href");
-        req = d.context("item1", "$");
+        String link1 = id.context("item1", "$._links.self.href");
+        req = id.context("item1", "$");
         logger.info(req);
         logger.info(link1);
 

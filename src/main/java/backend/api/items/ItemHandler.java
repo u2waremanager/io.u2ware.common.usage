@@ -1,7 +1,5 @@
 package backend.api.items;
 
-import java.io.Serializable;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import backend.domain.Bar;
 import backend.domain.Foo;
 import backend.domain.Item;
 import backend.domain.properties.LinkConversion;
-import io.u2ware.common.data.rest.core.annotation.HandleAfterRead;
 import io.u2ware.common.data.rest.core.annotation.HandleBeforeRead;
 
 @Component

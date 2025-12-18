@@ -48,9 +48,6 @@ public class UserTest {
         Optional<User> user = userRepository.findOne(spec);
         String admin = user.map(u-> u.getUserId()).orElse("adminX" );
 
-        System.err.println("&&&&&&&&&&&&&&");
-        System.err.println(admin);
-        System.err.println("&&&&&&&&&&&&&&");
 
 
         Jwt u1 = od.jose(admin);

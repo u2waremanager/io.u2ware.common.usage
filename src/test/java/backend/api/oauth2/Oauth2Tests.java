@@ -31,7 +31,7 @@ public class Oauth2Tests {
     @Test
     public void contextLoads() throws Exception{
 
-        Jwt u1 = od.jose("o1");
+        Jwt u1 = od.jose("oauth2User");
 
 
         mvc.perform(get("/api/oauth2/userinfo").auth(u1)).andDo(print()) .andExpect(is2xx());

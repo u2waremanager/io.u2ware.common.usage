@@ -1,19 +1,20 @@
 package backend.domain.properties;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.persistence.AttributeConverter;
-import jakarta.persistence.Converter;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
-import java.util.Collection;
-import java.util.Set;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
 public class AttributesSetConverter implements AttributeConverter<AttributesSet, String> {
 
     @Autowired
-    private ObjectMapper mapper;
+    protected ObjectMapper mapper;
 
     @Override
     public String convertToDatabaseColumn(AttributesSet attribute) {
@@ -32,7 +33,6 @@ public class AttributesSetConverter implements AttributeConverter<AttributesSet,
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public AttributesSet convertToEntityAttribute(String dbData) {
         try {
             if (dbData == null) return null;
