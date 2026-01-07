@@ -138,6 +138,11 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.htmlunit</groupId>
+			<artifactId>htmlunit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>io.u2ware.common</groupId>
 			<artifactId>u2ware-common-docs</artifactId>
 			<version>${u2ware.version}</version>

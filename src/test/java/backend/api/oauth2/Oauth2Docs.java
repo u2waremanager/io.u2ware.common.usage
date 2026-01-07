@@ -1,16 +1,22 @@
 package backend.api.oauth2;
 
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
 import io.u2ware.common.docs.MockMvcRestDocs;
 import io.u2ware.common.oauth2.jose.JoseKeyEncryptor;
@@ -19,7 +25,9 @@ import io.u2ware.common.oauth2.jose.JoseKeyEncryptor;
 @Component
 public class Oauth2Docs extends MockMvcRestDocs {
 
+    
     protected @Autowired(required = false) JwtEncoder jwtEncoder;
+    protected @Autowired(required = false) JwtDecoder jwtDecoder;
 
 
     public Jwt jwt(String username, String... authorities) {
@@ -62,5 +70,30 @@ public class Oauth2Docs extends MockMvcRestDocs {
             return null;
         }
     }
+
+
+    public String token(String username) throws Exception {
+
+        try{
+            ClassPathResource c = new ClassPathResource("public.txt");
+            Path p = c.getFile().toPath();
+
+            List<String> lines = Files.readAllLines(p);
+            for(String line : lines) {
+                if(StringUtils.hasText(line)) {
+                    Jwt jwt = JoseKeyEncryptor.decrypt(jwtDecoder, ()-> line);
+
+                    if(jwt.getSubject().equals(username)) {
+                        return line;
+                    }
+                }
+            }   
+            return null;
+
+        }catch(Exception e){
+            return null;
+        }
+    } 
+
     
 }

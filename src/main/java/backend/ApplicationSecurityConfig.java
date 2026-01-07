@@ -31,6 +31,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import io.u2ware.common.oauth2.jwt.OAuth2ResourceServerAdministration;
+import io.u2ware.common.oauth2.jwt.OAuth2ResourceServerUserinfoService;
 
 
 
@@ -61,32 +62,20 @@ public class ApplicationSecurityConfig {
         http
             .csrf(AbstractHttpConfigurer::disable)
             .cors(Customizer.withDefaults())
-            .authorizeHttpRequests(authorize -> {
+            .authorizeHttpRequests(authorize -> authorize
 
-
-                    // if(admin.available()) {                    
-                    //     authorize.requestMatchers("/stomp/**").authenticated();
-                    // }else{
-                    //     authorize.requestMatchers("/stomp/**").permitAll();
-                    // }
-
-                    authorize
-                        .requestMatchers(HttpMethod.GET, "/api").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/profile/**").permitAll()
-                        .requestMatchers("/api/**").authenticated()
-                        .anyRequest().permitAll()  ;
-
-
-
-                }
+                .requestMatchers("/api/**").authenticated()
+                .anyRequest().permitAll()  
             )
-            .oauth2ResourceServer(oauth2->oauth2
+            .oauth2ResourceServer(oauth2 -> oauth2
                 .jwt(Customizer.withDefaults())
             )
             .formLogin(formLogin -> formLogin
-                .successHandler(admin.authenticationSuccessHandler())
-                .failureHandler(admin.authenticationFailureHandler())
-            )            
+                .defaultSuccessUrl("/oauth2/logon") 
+            )
+            .logout(logout -> logout
+                .logoutSuccessUrl("/oauth2/logoff")
+            )
             ;
         
         return http.build();
@@ -104,12 +93,15 @@ public class ApplicationSecurityConfig {
     /////////////////////////////////////////////////////////
     // OAuth2ResourceServerConfigurationSupport
     /////////////////////////////////////////////////////////
-	private @Autowired SecurityProperties securityProperties;
-	private @Autowired OAuth2ResourceServerProperties oauth2ResourceServerProperties;
+	private @Autowired SecurityProperties sp;
+	private @Autowired OAuth2ResourceServerProperties op;
+
+    private @Autowired OAuth2ResourceServerUserinfoService userinfo;
+    private @Autowired Converter<Jwt, Collection<GrantedAuthority>> converter;
 
     @Bean
     public OAuth2ResourceServerAdministration oauth2ResourceServerAdministration() {
-        return new OAuth2ResourceServerAdministration(securityProperties, oauth2ResourceServerProperties);
+        return new OAuth2ResourceServerAdministration(sp, op, userinfo);
     }
 
 
@@ -133,9 +125,8 @@ public class ApplicationSecurityConfig {
 
     @Bean 
     public JwtAuthenticationConverter jwtAuthenticationConverter(OAuth2ResourceServerAdministration admin) {
-        return admin.jwtConverter(oauth2Service);
+        return admin.jwtConverter(converter);
     }
 
-    private @Autowired Converter<Jwt, Collection<GrantedAuthority>> oauth2Service;
 
 }
