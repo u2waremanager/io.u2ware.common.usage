@@ -8,20 +8,18 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
-import com.nimbusds.jose.jwk.RSAKey;
-
 import io.u2ware.common.docs.MockMvcRestDocs;
 import io.u2ware.common.oauth2.jose.JoseKeyEncryptor;
-import io.u2ware.common.oauth2.jwt.JwtConfiguration;
 
 
 @Component
 public class Oauth2Docs extends MockMvcRestDocs {
 
-    protected @Autowired(required = false) JwtConfiguration jwtConfiguration;
+    protected @Autowired(required = false) JwtEncoder jwtEncoder;
 
 
     public Jwt jwt(String username, String... authorities) {
@@ -49,7 +47,7 @@ public class Oauth2Docs extends MockMvcRestDocs {
     public Jwt jose(String username, String... authorities) {
 
         try{
-            return JoseKeyEncryptor.encrypt(jwtConfiguration.jwtEncoder(), claims->{
+            return JoseKeyEncryptor.encrypt(jwtEncoder, claims->{
 
                 claims.put("sub", username);
                 claims.put("email", username);
