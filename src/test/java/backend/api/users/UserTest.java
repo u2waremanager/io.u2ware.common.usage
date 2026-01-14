@@ -45,7 +45,7 @@ public class UserTest {
             .like("roles",  "%ROLE_ADMIN%")
             .build();
         Optional<User> user = userRepository.findOne(spec);
-        String admin = user.map(u-> u.getUserId()).orElse("adminX" );
+        String admin = user.map(u-> u.getUsername()).orElse("adminX" );
 
 
 

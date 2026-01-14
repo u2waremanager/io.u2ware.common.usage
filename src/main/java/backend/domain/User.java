@@ -1,5 +1,10 @@
 package backend.domain;
 
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import backend.domain.auditing.AuditedEntity;
@@ -14,10 +19,15 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "examples_users")
 @Data @EqualsAndHashCode(callSuper = true)
-public class User extends AuditedEntity {
+public class User extends AuditedEntity implements UserDetails{
 
     @Id
-    private String userId;
+    private String username;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String password;
+
+    private Collection<GrantedAuthority> authorities;
 
     private AttributesSet roles = new AttributesSet();
 

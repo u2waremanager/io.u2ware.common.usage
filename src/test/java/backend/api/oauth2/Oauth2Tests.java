@@ -78,6 +78,7 @@ public class Oauth2Tests {
         String username = properties.getUser().getName();
         String password = properties.getUser().getPassword();
         String logonPage = signIn(loginPage, username, password).getWebResponse().getContentAsString();
+        logger.info(logonPage);
 
 
         //Step 4
