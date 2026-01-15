@@ -1,4 +1,4 @@
-package backend.process.channels;
+package backend.stomp.channels;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.stomp.StompHeaders;
@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import backend.api.channels.ChannelRepository;
 import io.u2ware.common.stomp.client.WebsocketStompClientHandler;
 
-@Component("/topic/c")
+@Component("${io.u2ware.common.stomp.client.destination}")
 public class ChannelSubscriber implements WebsocketStompClientHandler{
 
     protected @Autowired ObjectMapper mapper;
