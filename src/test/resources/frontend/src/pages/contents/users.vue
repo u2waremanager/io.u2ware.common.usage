@@ -395,7 +395,6 @@ export default {
           return this.actionStart(true);
         })
         .then((r) => {
-          console.log(0, this.editForm);
           return this.handleUpdate();
         })
         .then((r) => {

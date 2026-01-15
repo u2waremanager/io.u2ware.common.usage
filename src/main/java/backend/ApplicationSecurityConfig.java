@@ -19,9 +19,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
@@ -32,9 +29,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.mvc.Controller;
 
-import io.u2ware.common.oauth2.jwt.JwtOldEndpoints;
 import io.u2ware.common.oauth2.jwt.OAuth2ResourceServerAdministration;
 import io.u2ware.common.oauth2.jwt.OAuth2ResourceServerAdministration.JwtEndpoints;
 import io.u2ware.common.oauth2.jwt.OAuth2ResourceServerUserinfoService;

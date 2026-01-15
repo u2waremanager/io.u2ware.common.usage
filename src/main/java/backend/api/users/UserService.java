@@ -1,21 +1,16 @@
 package backend.api.users;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Component;
@@ -52,7 +47,7 @@ public class UserService implements Converter<Jwt, Collection<GrantedAuthority>>
             AttributesSet roles = u.getRoles();
             logger.info("roles1: "+roles);
 
-            Collection<GrantedAuthority> addAll = u.getAuthorities(roles);
+            Collection<GrantedAuthority> addAll = User.getAuthorities(roles);
             authorities.addAll(addAll);
    
         }, ()->{

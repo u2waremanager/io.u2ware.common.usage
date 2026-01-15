@@ -1,4 +1,4 @@
-package backend.api.channels;
+package backend.api.sessions;
 
 import java.io.Serializable;
 
@@ -12,42 +12,48 @@ import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.stereotype.Component;
 
 import backend.api.ResponseStatusExceptions;
-import backend.domain.Channel;
+import backend.domain.Session;
 import backend.domain.User;
+import backend.domain.auditing.AuditedAuditor;
 import io.u2ware.common.data.rest.core.annotation.HandleAfterRead;
 import io.u2ware.common.data.rest.core.annotation.HandleBeforeRead;
 
 @Component
 @RepositoryEventHandler
-public class ChannelHandler {
+public class SessionHandler {
     
     protected Log logger = LogFactory.getLog(getClass());
 
 
     @HandleBeforeCreate
-    public void HandleBeforeCreate(Channel e) throws Exception{
+    public void HandleBeforeCreate(Session e) throws Exception{
         throw ResponseStatusExceptions.NOT_FOUND;
     }
 
     @HandleBeforeSave
-    public void HandleBeforeSave(Channel e)throws Exception{
+    public void HandleBeforeSave(Session e)throws Exception{
         throw ResponseStatusExceptions.NOT_FOUND;
     }
 
     @HandleBeforeDelete
-    public void HandleBeforeDelete(Channel e)throws Exception{
+    public void HandleBeforeDelete(Session e)throws Exception{
         throw ResponseStatusExceptions.NOT_FOUND;
     }
 
 
     @HandleAfterRead
-    public void HandleAfterRead(Channel e, Serializable r)throws Exception{
+    public void HandleAfterRead(Session e, Serializable r)throws Exception{
         throw ResponseStatusExceptions.NOT_FOUND;
     }
 
 
     @HandleBeforeRead
-    public void HandleBeforeRead(Channel e, Specification<User> r)throws Exception{
+    public void HandleBeforeRead(Session e, Specification<User> r)throws Exception{
+        logger.info("@HandleBeforeRead : "+e);
+        if(AuditedAuditor.hasNotPermission("ROLE_ADMIN")) {
+            throw ResponseStatusExceptions.UNAUTHORIZED;
+        }
+
 
     }
 }

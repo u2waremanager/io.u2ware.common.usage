@@ -265,23 +265,18 @@ const $contentsApi = {
     },
   },
 
-  // channels: {
-  //   search(data, params) {
-  //     return $contentsApi.api
-  //       .execute((e) => ({
-  //         method: "POST",
-  //         url: $contentsApi.api.url(e, "/api/channels/search"),
-  //         headers: $contentsApi.api.headers(e, {}),
-  //         params: $contentsApi.api.pageable(params),
-  //         data: data,
-  //       }))
-  //       .then((r) => {
-  //         r.entitiesTotal = r.page.totalElements;
-  //         r.entities = r._embedded.channels;
-  //         return r;
-  //       });
-  //   },
-  // },
+  sessions: {
+    search(data, params) {
+      return $contentsApi.api
+        .execute((e) => ({
+          method: "POST",
+          url: $contentsApi.api.url(e, "/api/sessions/search"),
+          headers: $contentsApi.api.headers(e, {}),
+          params: $contentsApi.api.pageable(params),
+          data: data,
+        }));
+    },
+  },
 
 
 };

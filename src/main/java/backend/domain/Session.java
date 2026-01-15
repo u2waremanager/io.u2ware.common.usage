@@ -8,16 +8,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "examples_channel")
+@Table(name = "examples_channels")
 @Data
 @NoArgsConstructor @AllArgsConstructor
-public class Channel {
+public class Session {
 
 
     @Id
     private String principal;
 
+    private String state;
+
     private Long timestamp;
 
-    private String state;
 }

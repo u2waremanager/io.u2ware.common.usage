@@ -32,10 +32,14 @@
 
     <v-navigation-drawer permanent v-model="drawer">
       <v-list nav>
+        <v-list-subheader>Entities</v-list-subheader>
+        <v-divider></v-divider>
         <v-list-item to="/contents/foos"> Foos</v-list-item>
         <v-list-item to="/contents/bars"> Bars </v-list-item>
         <v-list-item to="/contents/items"> Items </v-list-item>
-        <!-- <v-list-item v-if="isAdmin" to="/contents/channels"> Channels </v-list-item> -->
+        <v-divider></v-divider>
+         <v-list-subheader v-if="isAdmin">Systems</v-list-subheader>
+        <v-list-item v-if="isAdmin" to="/contents/sessions"> Session </v-list-item>
         <v-list-item v-if="isAdmin" to="/contents/users"> Users </v-list-item>
       </v-list>
     </v-navigation-drawer>
